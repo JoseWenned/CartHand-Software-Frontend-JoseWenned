@@ -52,8 +52,12 @@ export class ScannerProductComponent {
     });
 
     Quagga.onDetected((data: any) => {
+
       console.log( "Barcode detected:", data );
-    })
+
+      document.querySelector("#scanner-result")
+
+    });
 
   };
 
