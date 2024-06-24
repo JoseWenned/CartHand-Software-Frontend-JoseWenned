@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormRegisterProductComponent } from './components/form-register-product/form-register-product.component';
+import { RegisterProductComponent } from "./pages/register-product/register-product.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, FormRegisterProductComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    imports: [RouterOutlet, RegisterProductComponent]
 })
 export class AppComponent {
   title = 'CartHand-Frontend';
