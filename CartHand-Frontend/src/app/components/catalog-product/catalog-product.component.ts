@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ScannerProductComponent } from '../scanner-product/scanner-product.component';
 
 @Component({
@@ -9,5 +9,10 @@ import { ScannerProductComponent } from '../scanner-product/scanner-product.comp
   styleUrl: './catalog-product.component.scss'
 })
 export class CatalogProductComponent {
+
+  @Input() name! : string;
+  @Input() price! : number;
+  @Input() dataOfValidated! : string;
+  @Input() unitOfMeasurement! : string;
 
 }
