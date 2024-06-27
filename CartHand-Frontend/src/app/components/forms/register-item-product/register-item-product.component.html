@@ -10,7 +10,6 @@
 
     <label for="category">Category</label>
     <select id="category" [formControl]="category" required>
-        <option>Select category product</option>
         <option value="freshFoods">Fresh foods</option>
         <option value="perishableFoods">Perishable foods</option>
         <option value="nonPerishableFood">Non-perishable food</option>
@@ -38,6 +37,9 @@
 
     <label for="dateOfValidated">Date of validated</label>
     <input id="dateOfValidated" name="dateOfValidated" type="date" [formControl]="dateOfValidated" required/>
+
+    <label for="barcode">Barcode</label>
+    <input id="barcode" name="barcode" type="text" [formControl]="barcode" required/>
 
     <label for="unitOfMeasurement">unit of measurement</label>
     <input id="unitOfMeasurement" name="unitOfMeasurement" type="text" placeholder="Type here is unit of measurement" [formControl]="unitOfMeasurement" required/>

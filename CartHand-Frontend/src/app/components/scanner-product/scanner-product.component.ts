@@ -55,7 +55,7 @@ export class ScannerProductComponent {
 
       console.log( "Barcode detected:", data );
 
-      document.querySelector("#scanner-result")
+      document.querySelector("#barcode")
 
     });
 
