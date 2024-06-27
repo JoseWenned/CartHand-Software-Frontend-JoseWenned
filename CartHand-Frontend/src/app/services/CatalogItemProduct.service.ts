@@ -1,37 +1,31 @@
 import { Injectable } from "@angular/core";
+import { TItemProduct, TItemProductCreate } from "../interfaces/itemProduct.interface";
 
 @Injectable( { providedIn: "root" } )
 export class CatalogItemProduct{
 
-    ListProduct = [
+  private ListItemProduct: TItemProduct[] = [];
 
-        {
-    
-          name: "Bolacha", 
-          price: 2.85,
-          dateOfValidated: "01/08/2025",
-          unitOfMeasurement: "300g"
-      
-        },
-    
-        {
-    
-          name: "Arroz", 
-          price: 4.25,
-          dateOfValidated: "17/10/2025",
-          unitOfMeasurement: "1kg"
-      
-        },
-    
-        {
-    
-          name: "Coca Cola", 
-          price: 7.50,
-          dateOfValidated: "06/08/2024",
-          unitOfMeasurement: "1L"
-      
-        }
-    
-    ];
+  getAllListItem(){
+
+    return this.ListItemProduct;
+
+  };
+
+  addItemProduct( formData: TItemProductCreate ){
+
+    const newProduct = { ...formData, id: crypto.randomUUID() };
+
+    this.ListItemProduct.push( newProduct );
+
+  };
+
+  removeItemProduct( removingId: string ){
+
+    const indexProduct = this.ListItemProduct.findIndex( allProduct => allProduct.id === removingId );
+
+    this.ListItemProduct.splice( indexProduct, 1 );
+
+  };
 
 }
