@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-register-product',
+  selector: 'app-register-item-product',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './register-item-product.component.html',
