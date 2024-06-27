@@ -1,7 +1,7 @@
 <p>catalog-product works!</p>
 <app-catalog-list-product 
 
-    *ngFor="let item of ListProduct"
+    *ngFor="let item of getCatalogItemProduct()"
 
     [name]="item.name"
     [price]="item.price"
