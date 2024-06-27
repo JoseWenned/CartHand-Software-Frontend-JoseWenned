@@ -1,6 +1,6 @@
 <p>register-product works!</p>
 
-<form>
+<form (submit)="formSubmit($event)">
 
     <label for="name">Name</label>
     <input id="name" name="name" type="text" placeholder="Type here is name" [formControl]="name" required/>
@@ -42,6 +42,6 @@
     <label for="unitOfMeasurement">unit of measurement</label>
     <input id="unitOfMeasurement" name="unitOfMeasurement" type="text" placeholder="Type here is unit of measurement" [formControl]="unitOfMeasurement" required/>
 
-    <button type="submit">Register product</button>
+    <button (click)="onButtonClick()" type="submit">Register product</button>
 
 </form>
