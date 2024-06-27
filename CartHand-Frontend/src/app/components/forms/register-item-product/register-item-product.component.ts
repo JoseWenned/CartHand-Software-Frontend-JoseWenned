@@ -5,10 +5,10 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   selector: 'app-register-product',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './register-product.component.html',
-  styleUrl: './register-product.component.scss'
+  templateUrl: './register-item-product.component.html',
+  styleUrl: './register-item-product.component.scss'
 })
-export class RegisterProductComponent {
+export class RegisterItemProductComponent {
 
   name = new FormControl("");
   description = new FormControl("");

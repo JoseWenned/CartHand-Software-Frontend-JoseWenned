@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RegisterItemProductComponent } from '../../components/forms/register-item-product/register-item-product.component';
 
 @Component({
     selector: 'app-register-product',
