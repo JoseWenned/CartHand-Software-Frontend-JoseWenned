@@ -20,4 +20,38 @@ export class RegisterItemProductComponent {
   barcode = new FormControl("");
   unitOfMeasurement = new FormControl("");
 
+  formSubmit(event: Event){
+
+    event.preventDefault();
+
+    console.log({
+
+      name: this.name.value,
+      description: this.description.value,
+      category: this.category.value,
+      supplier: this.supplier.value,
+      price: this.price.value,
+      stock: this.stock.value,
+      dateOfValidatedd: this.dateOfValidated.value,
+      barcode: this.barcode.value,
+      unitOfMeasurement: this.unitOfMeasurement.value,
+
+    });
+
+    this.name.setValue("");
+    this.description.setValue("");
+    this.category.setValue("");
+    this.supplier.setValue("");
+    this.price.setValue("");
+    this.stock.setValue("");
+    this.dateOfValidated.setValue("");
+    this.barcode.setValue("");
+    this.unitOfMeasurement.setValue("");
+
+  };
+
+  onButtonClick(){
+    console.log("Click button");
+  }
+
 }
