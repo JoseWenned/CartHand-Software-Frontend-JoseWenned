@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { ScannerProductComponent } from "../../scanner-product/scanner-product.component";
 
 @Component({
     selector: 'app-register-item-product',
     standalone: true,
     templateUrl: './register-item-product.component.html',
     styleUrl: './register-item-product.component.scss',
-    imports: [ReactiveFormsModule, ScannerProductComponent]
+    imports: [ReactiveFormsModule]
 })
 export class RegisterItemProductComponent {
 
