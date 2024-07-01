@@ -1,4 +1,4 @@
-export interface TIntemProduct {
+export interface TItemProduct {
 
     id: string,
     name: string,
@@ -13,4 +13,4 @@ export interface TIntemProduct {
 
 };
 
-export type TItemProductCreate = Omit<TIntemProduct, "id" >;
+export type TItemProductCreate = Omit<TItemProduct, "id" >;
