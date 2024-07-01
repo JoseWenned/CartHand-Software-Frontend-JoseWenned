@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ScannerBarcodeService } from '../../../services/scannerBarcodeProduct.service';
 
 @Component({
     selector: 'app-register-item-product',
@@ -8,7 +9,9 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     styleUrl: './register-item-product.component.scss',
     imports: [ReactiveFormsModule]
 })
-export class RegisterItemProductComponent {
+export class RegisterItemProductComponent implements OnInit {
+
+  constructor( private barcodeService: ScannerBarcodeService ){}
 
   name = new FormControl("");
   description = new FormControl("");
@@ -51,7 +54,19 @@ export class RegisterItemProductComponent {
   };
 
   onButtonClick(){
-    console.log("Click button");
-  }
 
-}
+    console.log("Click button");
+
+  };
+
+  ngOnInit(): void{
+
+    this.barcodeService.currentBarcode.subscribe( barcode => {
+
+      this.barcode.setValue( barcode );
+
+    });
+
+  };
+
+};
