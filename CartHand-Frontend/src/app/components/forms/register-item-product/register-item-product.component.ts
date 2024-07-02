@@ -16,6 +16,7 @@ export class RegisterItemProductComponent implements OnInit {
   name = new FormControl("");
   description = new FormControl("");
   category = new FormControl("");
+  brand = new FormControl("");
   supplier = new FormControl("");
   price = new FormControl("");
   stock = new FormControl("");
@@ -32,6 +33,7 @@ export class RegisterItemProductComponent implements OnInit {
       name: this.name.value,
       description: this.description.value,
       category: this.category.value,
+      brand: this.brand.value,
       supplier: this.supplier.value,
       price: this.price.value,
       stock: this.stock.value,
@@ -44,6 +46,7 @@ export class RegisterItemProductComponent implements OnInit {
     this.name.setValue("");
     this.description.setValue("");
     this.category.setValue("");
+    this.brand.setValue("");
     this.supplier.setValue("");
     this.price.setValue("");
     this.stock.setValue("");
