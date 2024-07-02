@@ -2,6 +2,11 @@
 
 <form (submit)="formSubmit($event)">
 
+    <label for="productImage">Product Image</label>
+    <input id="image" name="productImage" type="file" (change)="onFileSelected($event)"/>
+
+    <img *ngIf="imagePreview"[src]="imagePreview" alt="Image preview" style="max-width: 200px; margin-top: 10px;"/>
+
     <label for="name">Name</label>
     <input id="name" name="name" type="text" placeholder="Type here is name" [formControl]="name" required/>
 
