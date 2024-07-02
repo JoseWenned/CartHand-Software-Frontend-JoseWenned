@@ -10,17 +10,9 @@ import { ScannerBarcodeService } from '../../services/scannerBarcodeProduct.serv
   templateUrl: './scanner-cam-barcode.component.html',
   styleUrl: './scanner-cam-barcode.component.scss'
 })
-export class ScannerCamBarcodeComponent implements OnInit, OnDestroy {
+export class ScannerCamBarcodeComponent {
 
   constructor(private barcodeService: ScannerBarcodeService) { }
-
-  ngOnInit(): void {
-    this.startScanner();
-  }
-
-  ngOnDestroy(): void {
-    Quagga.stop();
-  }
 
   startScanner() {
 
@@ -28,6 +20,9 @@ export class ScannerCamBarcodeComponent implements OnInit, OnDestroy {
       inputStream : {
         name : "Live",
         type : "LiveStream",
+        constraints: {
+          facingMode: "enviroment"
+        },
         target: document.querySelector('#scanner-container') 
       },
       decoder : {
@@ -39,21 +34,45 @@ export class ScannerCamBarcodeComponent implements OnInit, OnDestroy {
           "upc_e_reader"
         ]
       }
-    }, function(err: any) {
+    },( err: any ) => {
         if (err) {
-            console.log(err);
+            console.log( err );
             return
         }
-        console.log("Initialization finished. Ready to start");
+        console.log( "Initialization finished. Ready to start" );
         Quagga.start();
     });
 
-    Quagga.onDetected((data: any) => {
+    Quagga.onDetected(( data: any ) => {
 
-      console.log("Barcode detected:", data);
-      this.barcodeService.changeBarcode(data.codeResult.code);
+      if( data ){
+        console.log( "Barcode detected:", data );
+        this.barcodeService.changeBarcode( data.codeResult.code );
+        this.stopScannerBarcode();
+      }      
 
     });
+
+  };
+
+  // Function stop read scanner barcode
+  stopScannerBarcode(){
+
+    Quagga.stop();
+
+  };
+
+  // Button open scanner 
+  onButtonAddProduct(){
+
+    this.startScanner();
+
+  };
+
+  // Button closed scanner
+  onButtonClosedScanner(){
+
+    this.stopScannerBarcode();
 
   };
 
