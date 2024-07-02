@@ -58,7 +58,6 @@ export class ScannerCamBarcodeComponent {
   // Function stop read scanner barcode
   stopScannerBarcode(){
 
-    Quagga.stop();
 
   };
 
@@ -71,6 +70,14 @@ export class ScannerCamBarcodeComponent {
 
   // Button closed scanner
   onButtonClosedScanner(){
+
+    const closedDiv = document.querySelector("#scanner-container")
+
+    if(closedDiv){
+
+      closedDiv.innerHTML = ""
+
+    }
 
     this.stopScannerBarcode();
 

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ScannerBarcodeService } from '../../../services/scannerBarcodeProduct.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-register-item-product',
     standalone: true,
     templateUrl: './register-item-product.component.html',
     styleUrl: './register-item-product.component.scss',
-    imports: [ReactiveFormsModule]
+    imports: [ReactiveFormsModule, CommonModule]
 })
 export class RegisterItemProductComponent implements OnInit {
 
@@ -23,6 +24,8 @@ export class RegisterItemProductComponent implements OnInit {
   dateOfValidated = new FormControl("");
   barcode = new FormControl("");
   unitOfMeasurement = new FormControl("");
+  image: File | null = null;
+  imagePreview: string | null = null;
 
   formSubmit(event: Event){
 
@@ -40,6 +43,7 @@ export class RegisterItemProductComponent implements OnInit {
       dateOfValidatedd: this.dateOfValidated.value,
       barcode: this.barcode.value,
       unitOfMeasurement: this.unitOfMeasurement.value,
+      image: this.image
 
     });
 
@@ -53,12 +57,35 @@ export class RegisterItemProductComponent implements OnInit {
     this.dateOfValidated.setValue("");
     this.barcode.setValue("");
     this.unitOfMeasurement.setValue("");
+    this.image = null;
+    this.imagePreview = null;
 
   };
 
   onButtonClick(){
 
     console.log("Click button");
+
+  };
+
+  onFileSelected( event: Event ) {
+
+    const file = ( event.target as HTMLInputElement ).files?.[0];
+
+    if( file ){
+
+      this.image = file;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+
+        this.imagePreview = reader.result as string;
+
+      };
+
+      reader.readAsDataURL( file );
+
+    };
 
   };
 
