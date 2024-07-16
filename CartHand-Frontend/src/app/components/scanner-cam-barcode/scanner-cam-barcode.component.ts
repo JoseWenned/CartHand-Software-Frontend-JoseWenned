@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import Quagga from 'quagga'; 
 import { ScannerBarcodeService } from '../../services/scannerBarcodeProduct.service';
-
 
 @Component({
   selector: 'app-scanner-cam-barcode',
@@ -11,6 +10,8 @@ import { ScannerBarcodeService } from '../../services/scannerBarcodeProduct.serv
   styleUrl: './scanner-cam-barcode.component.scss'
 })
 export class ScannerCamBarcodeComponent {
+
+  private lastScannedCode: string | null = null;
 
   constructor(private barcodeService: ScannerBarcodeService) { }
 
@@ -26,13 +27,14 @@ export class ScannerCamBarcodeComponent {
         target: document.querySelector('#scanner-container') 
       },
       decoder : {
-        readers : [
-          "code_128_reader",
-          "ean_reader",
-          "ean_8_reader",
-          "upc_reader",
-          "upc_e_reader"
-        ]
+        readers : [{
+          format: "ean_reader",
+          config: {
+            supplemements: [
+              "ean_13_reader"
+            ]
+          }
+        }]
       }
     },( err: any ) => {
         if (err) {
@@ -43,43 +45,44 @@ export class ScannerCamBarcodeComponent {
         Quagga.start();
     });
 
-    Quagga.onDetected(( data: any ) => {
+    Quagga.onDetected((data: any) => {
 
-      if( data ){
-        console.log( "Barcode detected:", data );
-        this.barcodeService.changeBarcode( data.codeResult.code );
-        this.stopScannerBarcode();
-      }      
+      const scannedCode = data.codeResult.code;
+
+      if (scannedCode !== this.lastScannedCode) {
+
+        console.log("Barcode detected:", data);
+        this.barcodeService.changeBarcode(scannedCode);
+        this.lastScannedCode = scannedCode;
+
+      } else {
+
+        console.log("Stop scanner");
+        Quagga.stop();
+
+      };
 
     });
 
   };
 
-  // Function stop read scanner barcode
-  stopScannerBarcode(){
-
-
-  };
-
   // Button open scanner 
-  onButtonAddProduct(){
+  openScanner(){
 
     this.startScanner();
 
   };
 
   // Button closed scanner
-  onButtonClosedScanner(){
+  closedScanner(){
 
-    const closedDiv = document.querySelector("#scanner-container")
+    const closedScannerDiv = document.querySelector("#scanner-container")
 
-    if(closedDiv){
+    if(closedScannerDiv){
 
-      closedDiv.innerHTML = ""
+      closedScannerDiv.innerHTML = ""
 
     }
-
-    this.stopScannerBarcode();
 
   };
 
