@@ -2,9 +2,10 @@
 
     <h1>List Itens Products</h1>
 
-    <ul>
-        <app-card-itens-products></app-card-itens-products>
+    <ul *ngIf="allItensProducts.length > 0">
+        <app-card-itens-products *ngFor="let allItens of allItensProducts"></app-card-itens-products>
     </ul>
+    <p *ngIf="listProduct.length === 0">Register your itens products</p>
 
 </section>
 
