@@ -27,13 +27,14 @@ export class ScannerCamBarcodeComponent {
         target: document.querySelector('#scanner-container') 
       },
       decoder : {
-        readers : [
-          "code_128_reader",
-          "ean_reader",
-          "ean_8_reader",
-          "upc_reader",
-          "upc_e_reader"
-        ]
+        readers : [{
+          format: "ean_reader",
+          config: {
+            supplemements: [
+              "ean_13_reader"
+            ]
+          }
+        }]
       }
     },( err: any ) => {
         if (err) {
@@ -56,7 +57,7 @@ export class ScannerCamBarcodeComponent {
 
       } else {
 
-        console.log("Barcode has already been registered:");
+        console.log("Stop scanner");
         Quagga.stop();
 
       };
