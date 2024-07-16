@@ -1,0 +1,57 @@
+<p>register-product works!</p>
+
+<form (submit)="formSubmit($event)">
+
+    <label for="productImage">Product Image</label>
+    <input id="image" name="productImage" type="file" (change)="onFileSelected($event)"/>
+
+    <img *ngIf="imagePreview"[src]="imagePreview" alt="Image preview" style="max-width: 200px; margin-top: 10px;"/>
+
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" placeholder="Type here is name" [formControl]="name" required/>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" type="text" placeholder="Type here is description" [formControl]="description" required></textarea>
+
+    <label for="category">Category</label>
+    <select id="category" [formControl]="category" required>
+        <option value="freshFoods">Fresh foods</option>
+        <option value="perishableFoods">Perishable foods</option>
+        <option value="nonPerishableFood">Non-perishable food</option>
+        <option value="drinks">Drinks</option>
+        <option value="cleaningProducts">Cleaning products</option>
+        <option value="personalHygiene">Personal hygiene</option>
+        <option value="babyHygieneAndCare">Baby hygiene and care</option>
+        <option value="fronzen">Fronzen</option>
+        <option value="petShop">Pet shop</option>
+        <option value="spices">Spices</option>
+        <option value="stationeryProducts">Stationery products</option>
+        <option value="householdAppliancesAndUtilities">Household appliances and utilities</option>
+        <option value="vehicleCare">Vehicle care</option>
+        <option value="others">Others</option>
+    </select>
+
+    <label for="brand">Brand</label>
+    <input id="brand" name="brand" type="text" placeholder="Type here is brand" [formControl]="brand" required/>
+
+    <label for="supplier">Supplier</label>
+    <input id="supplier" name="supplier" type="text" placeholder="Type here is supplier" [formControl]="supplier" required/>
+
+    <label for="price">Price</label>
+    <input id="price" name="price" type="number" placeholder="Type here is price" [formControl]="price" required/>
+
+    <label for="stock">Stock</label>
+    <input id="stock" name="stock" type="text" placeholder="Type here is stock" [formControl]="stock" required/>
+
+    <label for="dateOfValidated">Date of validated</label>
+    <input id="dateOfValidated" name="dateOfValidated" type="date" [formControl]="dateOfValidated" required/>
+
+    <label for="barcode">Barcode</label>
+    <input id="barcode" name="barcode" type="text" [formControl]="barcode" required/>
+
+    <label for="unitOfMeasurement">unit of measurement</label>
+    <input id="unitOfMeasurement" name="unitOfMeasurement" type="text" placeholder="Type here is unit of measurement" [formControl]="unitOfMeasurement" required/>
+
+    <button (click)="onButtonClick()" type="submit">Register product</button>
+
+</form>
