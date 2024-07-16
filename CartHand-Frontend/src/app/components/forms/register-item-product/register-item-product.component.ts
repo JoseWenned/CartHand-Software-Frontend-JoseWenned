@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ScannerBarcodeService } from '../../../services/scannerBarcodeProducts.service';
 import { CommonModule } from '@angular/common';
+import { ListItensProductService } from '../../../services/listItensProducts.service';
+import { IItemProductCreate } from '../../../interfaces/itemProduct.interface';
 
 @Component({
     selector: 'app-register-item-product',
@@ -12,7 +14,10 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterItemProductComponent implements OnInit {
 
-  constructor( private barcodeService: ScannerBarcodeService ){}
+  constructor( 
+    private barcodeService: ScannerBarcodeService,
+    private listItensProducts: ListItensProductService
+  ){}
 
   name = new FormControl("");
   description = new FormControl("");
@@ -31,19 +36,19 @@ export class RegisterItemProductComponent implements OnInit {
 
     event.preventDefault();
 
-    console.log({
+    const data: IItemProductCreate = ({
 
-      name: this.name.value,
-      description: this.description.value,
-      category: this.category.value,
-      brand: this.brand.value,
-      supplier: this.supplier.value,
-      price: this.price.value,
-      stock: this.stock.value,
-      dateOfValidatedd: this.dateOfValidated.value,
-      barcode: this.barcode.value,
-      unitOfMeasurement: this.unitOfMeasurement.value,
-      image: this.image
+      name: this.name.value || "",
+      description: this.description.value || "",
+      category: this.category.value || "",
+      brand: this.brand.value || "",
+      supplier: this.supplier.value || "",
+      price: this.price.value || "",
+      stock: parseInt(this.stock.value || '0', 10),
+      dateOfValidated: new Date(this.dateOfValidated.value || ''),
+      barcode: this.barcode.value || "",
+      unitOfMeasuarement: this.unitOfMeasurement.value || "",
+      image: this.image,
 
     });
 
@@ -59,6 +64,8 @@ export class RegisterItemProductComponent implements OnInit {
     this.unitOfMeasurement.setValue("");
     this.image = null;
     this.imagePreview = null;
+
+    this.listItensProducts.addItensProducts( data );
 
   };
 

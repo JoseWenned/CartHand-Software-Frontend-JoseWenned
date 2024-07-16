@@ -4,7 +4,7 @@ import { IItemProduct, IItemProductCreate } from "../interfaces/itemProduct.inte
 @Injectable({
     providedIn: "root"
 })
-export class listItensProductService {
+export class ListItensProductService {
 
     private listItensProducts: IItemProduct[] = [];
 
