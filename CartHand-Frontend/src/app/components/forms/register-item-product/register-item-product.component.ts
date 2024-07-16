@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { ScannerBarcodeService } from '../../../services/scannerBarcodeProduct.service';
+import { ScannerBarcodeService } from '../../../services/scannerBarcodeProducts.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
