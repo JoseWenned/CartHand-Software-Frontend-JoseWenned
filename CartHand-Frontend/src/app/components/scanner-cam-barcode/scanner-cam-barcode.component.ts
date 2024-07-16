@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Quagga from 'quagga'; 
-import { ScannerBarcodeService } from '../../services/scannerBarcodeProduct.service';
+import { ScannerBarcodeService } from '../../services/scannerBarcodeProducts.service';
 
 @Component({
   selector: 'app-scanner-cam-barcode',
